@@ -6,7 +6,7 @@ package com.mycompany.app;
 public class App
 {
 
-    private final String message = "Hello World!";
+    private final String message = "Welcome to maven compiling and building tool.....This works awesome.......";
 
     public App() {}
 
