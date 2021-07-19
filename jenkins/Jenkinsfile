@@ -13,12 +13,12 @@ pipeline {
             steps{
                 // sh 'git config --global user.email "pujarampariya@example.com"'
                 // sh 'git config --global user.name "poojarampariya"'
-                checkout([$class: 'GitSCM', 
-                branches: [[name: '*/tags/*']], 
-                extensions: [[$class: 'PerBuildTag']], 
-                userRemoteConfigs: [[credentialsId: 'jenkins-git-ssh', 
-                refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
-                url: 'https://github.com/poojarampariya/simple-java-maven-app.git']]])
+               checkout([$class: 'GitSCM',
+               branches: [[name: 'tag2']], 
+               extensions: [[$class: 'PerBuildTag'], 
+               [$class: 'UserIdentity', email: 'pujarampariya@gmail.com', name: 'poojarampariya']], 
+               userRemoteConfigs: [[credentialsId: 'jenkins-git-ssh', 
+               url: 'git@github.com:poojarampariya/simple-java-maven-app.git']]])
             }
         }
         stage('Build') {
