@@ -11,6 +11,8 @@ pipeline {
     stages {
         stage('Git Checkout'){
             steps{
+                sh 'git config --global user.email "pujarampariya@example.com"'
+                sh 'git config --global user.name "poojarampariya"'
                 checkout([$class: 'GitSCM', 
                 branches: [[name: '*/tags/*']], 
                 extensions: [[$class: 'PerBuildTag']], 
