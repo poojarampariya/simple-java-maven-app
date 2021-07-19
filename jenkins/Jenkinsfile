@@ -5,11 +5,15 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+    environment {
+        String result='0.0.0';
+    }
     stages {
         stage('Build') {
+            when { tag "release-*" }
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                sh "git tag build_${gitCommit}"
+                // sh "git tag build_${gitCommit}"
             }
         }
         stage('Test') {
