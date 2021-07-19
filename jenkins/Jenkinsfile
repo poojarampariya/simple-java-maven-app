@@ -9,10 +9,19 @@ pipeline {
         String result='0.0.0';
     }
     stages {
+        stage('Git Checkout'){
+            steps{
+                checkout([$class: 'GitSCM', 
+                branches: [[name: '*/tags/*']], 
+                extensions: [[$class: 'PerBuildTag']], 
+                userRemoteConfigs: [[credentialsId: 'jenkins-password', 
+                refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
+                url: 'https://github.com/poojarampariya/simple-java-maven-app.git']]])
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                sh 'git tag'
                 // sh "git tag build_${gitCommit}"
             }
         }
