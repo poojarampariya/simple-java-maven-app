@@ -19,8 +19,10 @@ pipeline {
                [$class: 'UserIdentity', email: 'pujarampariya@gmail.com', name: 'poojarampariya']], 
                userRemoteConfigs: [[credentialsId: 'jenkins-git-ssh', 
                url: 'git@github.com:poojarampariya/simple-java-maven-app.git']]])
-               TAGS = sh(script: "git tag")
-               println "${TAGS}"
+               resolveScm source: [$class: 'GitSCMSource', 
+               credentialsId: 'jenkins-git-ssh', 
+               id: '_', remote: 'git@github.com:jenkins-docs/simple-java-maven-app.git', 
+               traits: [gitBranchDiscovery(), gitTagDiscovery()]], targets: ['']
             }
         }
         stage('Build') {
