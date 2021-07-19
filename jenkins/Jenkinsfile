@@ -14,7 +14,7 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                 branches: [[name: '*/tags/*']], 
                 extensions: [[$class: 'PerBuildTag']], 
-                userRemoteConfigs: [[credentialsId: 'jenkins-password', 
+                userRemoteConfigs: [[credentialsId: 'jenkins-git-ssh', 
                 refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
                 url: 'https://github.com/poojarampariya/simple-java-maven-app.git']]])
             }
