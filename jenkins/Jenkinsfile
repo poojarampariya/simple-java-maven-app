@@ -19,6 +19,8 @@ pipeline {
                [$class: 'UserIdentity', email: 'pujarampariya@gmail.com', name: 'poojarampariya']], 
                userRemoteConfigs: [[credentialsId: 'jenkins-git-ssh', 
                url: 'git@github.com:poojarampariya/simple-java-maven-app.git']]])
+               TAGS = sh(script: "git tag")
+               println "${TAGS}"
             }
         }
         stage('Build') {
