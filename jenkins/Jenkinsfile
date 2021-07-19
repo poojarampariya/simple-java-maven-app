@@ -10,9 +10,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-            when { tag "release-*" }
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'git tag'
                 // sh "git tag build_${gitCommit}"
             }
         }
